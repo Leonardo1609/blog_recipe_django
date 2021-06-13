@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block categories %}
+	{% include 'categories/snippets/list_categories.html' with categories=categories %}
+{% endblock %}
+
+{% block banner %}
+	{% include 'snippets/search.html' %}
+{% endblock %}
+
+{% block content %}
+	<div class="col px-2 px-lg-0">
+		<h1>Hello World</h1>
+	</div>
+{% endblock %}

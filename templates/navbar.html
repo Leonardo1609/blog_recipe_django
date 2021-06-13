@@ -1,0 +1,37 @@
+{% load static %}
+<nav class="text-white bg-primary py-3 px-2 px-lg-0 sticky-top">
+	<div
+		class="max-w-container mx-auto d-flex justify-content-between align-items-center"
+	>
+		<a href="{% url 'index' %}" class="text-white h3">Blog Recipes</a>
+		<ul class="d-flex">
+			{% if not user.is_authenticated %}
+			<li>
+				<a href="{% url 'login' %}" class="text-white h5">
+					<i class="fas fa-user"></i>
+					Login</a
+				>
+			</li>
+			<li class="ms-4">
+				<a href="{% url 'register' %}" class="text-white h5">
+					<i class="fas fa-user-plus"></i>
+					Register</a
+				>
+			</li>
+			{% else %}
+			<li class="ms-4">
+				<a href="{% url 'users:profile' user.profile.slug %}" class="text-white h5">
+					<i class="fas fa-user"></i>
+					Profile</a
+				>
+			</li>
+			<li class="ms-4">
+				<a href="{% url 'logout' %}" class="text-white h5">
+					<i class="fas fa-sign-out-alt"></i>
+					Logout</a
+				>
+			</li>
+			{% endif %}
+		</ul>
+	</div>
+</nav>

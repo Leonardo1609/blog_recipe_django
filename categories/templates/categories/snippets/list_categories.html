@@ -1,0 +1,15 @@
+{% load static %}
+<ul class="d-flex justify-content-center flex-wrap">
+	{% for category in categories %}
+	<li class="category_list_li">
+		<a
+			class="category_list__link d-flex justify-content-center align-items-center h-100 fs-18 fw-bold py-3 px-3 text-center"
+			href="#"
+		>
+			<span class="category_list__span">
+				{{ category.name }}
+			</span>
+		</a>
+	</li>
+	{% endfor %}
+</ul>

@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="col px-2 px-lg-0 mt-5">
+	<h2 class="text-center">
+		{{ profile.user.username }} {% if user.id == profile.user.id %}
+		<a href="{% url 'users:edit_profile' profile.slug %}">
+			<i class="fas fa-edit fs-18 cursor-pointer"></i>
+		</a>
+		{% endif %}
+	</h2>
+	<div class="row mt-5">
+		<div class="col-12 col-md-6 d-flex justify-content-center">
+			<div class="w-75 mb-5">
+				<img
+					src="{% if profile.image %} {{ profile.image.url }} {% else %} {% static 'images/placeholder-user.jpg' %} {% endif %}"
+					alt="Perfil"
+					class="rounded-circle img-fluid"
+				/>
+			</div>
+		</div>
+		<div class="col-12 col-md-6">
+			<div class="fs-18 mb-4">
+				<strong>Email:</strong>
+				<span>{{ profile.user.email }}</span>
+			</div>
+			<div class="fs-18 mb-4">
+				<strong>Website:</strong>
+				<a href="{{ profile.url }}" target="_blank"
+					>{{ profile.url }}</a
+				>
+			</div>
+			<div class="fs-18 mb-4">
+				<strong>Biography:</strong>
+				<p>{{ profile.bio }}</p>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
