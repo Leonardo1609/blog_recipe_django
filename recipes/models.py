@@ -8,7 +8,7 @@ class Recipe(models.Model):
     title = models.CharField(max_length=50)
     category = models.ForeignKey( Category, on_delete=models.CASCADE )
     author = models.ForeignKey( Profile, on_delete=models.CASCADE )
-    image = models.ImageField( upload_to='media/recipes/', null=False, blank=False )
+    image = models.ImageField( upload_to='recipes/', null=False, blank=False )
     preparation = models.TextField()
     ingredients = models.TextField()
     slug = models.SlugField(null=False, blank=False)

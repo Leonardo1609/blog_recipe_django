@@ -1,0 +1,42 @@
+{% extends 'base.html' %} 
+{% block content %}
+<section class="mt-5">
+	<div class="row">
+		<div class="col-12">
+			<a class="btn btn-success" href="{% url 'recipes:add_recipe' user.profile.slug %}">
+				<i class="fas fa-plus fs-14"></i> Add Recipe
+			</a>
+		</div>
+		<h2 class="text-center">Manage your recipes</h2>
+		<div class="col-12 mt-5">
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="text-center">Title</th>
+						<th class="text-center">Category</th>
+						<th class="text-center">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+				{% for recipe in recipes %}
+					<tr>
+						<td class="text-center">{{ recipe.title }}</td>
+						<td class="text-center">{{ recipe.category.name }}</td>
+						<td class="text-center">
+							<button class="btn btn-secondary">See</button>
+							<button class="btn btn-dark">Edit</button>
+							<button data-recipe="recipe.pk" class="btn btn-danger">Delete</button>
+						</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div class="col-12 d-flex justify-content-center align-items-center">
+			<a href="{% url 'recipes:users_recipes' profile_slug=user.profile.slug page=previous_page %}" class="btn btn-primary py-0 px-2 me-2 {% if page == 1 %}disabled{% endif %}" ><i class="fas fa-chevron-left"></i></a>
+			{{ page }} / {{ total_pages }}	
+			<a href="{% url 'recipes:users_recipes' profile_slug=user.profile.slug page=next_page %}" class="btn btn-primary py-0 px-2 ms-2 {% if page == total_pages %}disabled{% endif %}"><i class="fas fa-chevron-right"></i></a>
+		</div>
+	</div>
+</section>
+{% endblock %}

@@ -14,7 +14,8 @@ urlpatterns = [
     path('register', views.register_view, name='register'),
     path('logout', views.logout_view, name='logout'),
     path('admin/', admin.site.urls),
-    path('profile/', include('users.urls'))
+    path('profile/<slug:profile_slug>/', include('recipes.urls')),
+    path('profile/', include('users.urls')),
 ]
 
 if settings.DEBUG:
