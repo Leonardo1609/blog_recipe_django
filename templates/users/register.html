@@ -1,23 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-	<div class="col mt-4">
-		<form method="POST">
-		{% csrf_token %}
-			{% for field in register_form %}
-				<div class="form-group mb-4">
-					{{ field.label_tag }}
-					{{ field }}
-					{% if field.errors %}
-						<span class="text-danger">{{ field.errors }}</span>
-					{% endif %}
-				</div>
-			{% endfor %}
-			<div class="d-grid gap-2 mt-4">
-				<button 
-					type="submit" 
-					class="btn btn-primary"
-				>Register</button>
-			</div>
-		</form>
-	</div>
+<div class="col mt-4">
+	{% include 'snippets/form.html' with form=register_form button_name='Register'%}
+</div>
 {% endblock %}

@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.contrib import messages
 from django.views.generic.base import TemplateView
+from django.views.generic.detail import DetailView
 
 from .models import Recipe
 from .forms import RecipeForm
@@ -48,4 +49,19 @@ class AddRecipeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['recipe_form'] = RecipeForm(self.request.POST or None)
+        return context
+
+class RecipeView(DetailView):
+    model = Recipe
+    template_name = 'recipe_detail.html'
+
+    # def get(self, request, *args, **kwargs):
+    #     self.object = self.get_object()
+    #     context = self.get_context_data(object = self.object)
+        # if kwargs['profile_slug'] != request.user.profile.slug:
+        #     return redirect('index')
+        # return self.render_to_response(context)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         return context

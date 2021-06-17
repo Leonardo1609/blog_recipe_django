@@ -26,8 +26,8 @@ class RecipeForm(forms.Form):
     )
 
     image = forms.ImageField(
-            required=False
-            )
+            required=False,
+    )
 
     ingredientes = forms.CharField(
         required=True,

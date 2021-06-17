@@ -5,7 +5,8 @@ from . import views
 app_name = 'recipes'
 
 urlpatterns = [
-    path('recipes/add', views.AddRecipeView.as_view() , name='add_recipe'),
-    path('recipes/', views.users_recipes_view, name='users_recipes'),
-    path('recipes/<int:page>/', views.users_recipes_view, name='users_recipes'),
+    path('admin/add', views.AddRecipeView.as_view() , name='add_recipe'),
+    path('admin/', views.users_recipes_view, name='users_recipes'),
+    path('admin/<int:page>/', views.users_recipes_view, name='users_recipes'),
+    path('recipes/<slug:slug>', views.RecipeView.as_view(), name="recipe_detail")
 ]

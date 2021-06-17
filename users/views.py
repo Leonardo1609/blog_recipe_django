@@ -1,10 +1,13 @@
+import math
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 
 from django.views.generic.detail import DetailView
 # from django.views.generic import TemplateView
 from django.contrib.auth.models import User
 
 from .models import Profile
+from recipes.models import Recipe
 
 from .forms import UpdateProfileForm
 
@@ -14,6 +17,10 @@ class ProfileView(DetailView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        recipes = Recipe.objects.filter(author=context['profile']).order_by('-created_at')[:3]
+        context['recipes'] = recipes
+
         return context
 
 
